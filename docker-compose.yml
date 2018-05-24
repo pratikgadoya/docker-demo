@@ -10,7 +10,7 @@ services:
     volumes:
       - ./src/:/var/www/html/
     ports:
-      - "8000:80"
+      - "8100:80"
     stdin_open: true
     tty: true
   db:
@@ -21,4 +21,4 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: root
     ports:
-      - "3306:3306"
+      - "9906:3306"
