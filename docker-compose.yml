@@ -8,12 +8,12 @@ services:
     ports:
       - "8100:80"
     environment:
-      WORDPRESS_DB_HOST: 52.15.252.196
+      WORDPRESS_DB_HOST: localhost
       WORDPRESS_DB_USER: root
       WORDPRESS_DB_PASSWORD: root
       WORDPRESS_DB_NAME: dockerdemo
     volumes:
-      - /src:/var/www/html:rw
+      - ./docker-demo/src:/var/www/html:rw
     depends_on:
       - achi-mysql
     networks:
