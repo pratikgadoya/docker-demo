@@ -2,16 +2,7 @@
 version: '3'
 
 services:
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: dockerdemo
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-    ports:
-      - "3306:3306"
-  web:
+    web:
     image: php:7.2.2-apache
     container_name: php_web
     depends_on:
@@ -22,3 +13,12 @@ services:
       - "8000:80"
     stdin_open: true
     tty: true
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dockerdemo
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+    ports:
+      - "3306:3306"
