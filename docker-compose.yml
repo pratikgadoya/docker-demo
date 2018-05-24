@@ -1,24 +1,34 @@
 # ./docker-compose.yml
-version: '3'
+version: "3"
 
 services:
-  web:
+  achi-php-apache:
     image: php:7.2.2-apache
-    container_name: php_web
-    depends_on:
-      - db
-    volumes:
-      - ./src/:/var/www/html/
+    container_name: achi-php-apache
     ports:
-      - "80:80"
-    stdin_open: true
-    tty: true
-  db:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: 52.15.252.196
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: root
+      WORDPRESS_DB_NAME: dockerdemo
+    volumes:
+      - /src:/var/www/html:rw
+    depends_on:
+      - achi-mysql
+    networks:
+      - wp-net
+  achi-mysql:
     image: mysql:5.7
+    container_name: achi-mysql
+    ports:
+      - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: dockerdemo
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-    ports:
-      - "3306:3306"
+    networks:
+      - wp-net
+
+networks:
+  wp-net:
+    driver: bridge
