@@ -1,2 +1,0 @@
-FROM bigtruedata/php-mysqli:7
-ADD dump.sql /docker-entrypoint-initdb.d/dump.sql
